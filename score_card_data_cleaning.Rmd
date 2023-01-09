@@ -1,0 +1,36 @@
+---
+title: "College Score Card Project"
+author: "Addison McGhee"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo = TRUE, message = F)
+```
+
+```{r, include=F}
+library(MASS)
+library(pander)
+library(tidyverse)
+options(digits = 3)
+theme_update(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+## Read in Data
+fieldsOfStudy = read.csv("field_of_study.csv")
+schools = read.csv("institutions.csv") 
+```
+
+```{r}
+# Select Columns
+schools_subset = schools %>% 
+  select(UNITID, OPEID, INSTNM, CITY, STABBR, ZIP, ACCREDAGENCY,
+         REGION, LATITUDE, LONGITUDE, ADM_RATE, ADM_RATE_ALL,
+         colnames(schools)[str_detect(colnames(schools), "^(SAT|ACT)")])
+
+```
+
+
+
